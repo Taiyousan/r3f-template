@@ -33,26 +33,24 @@ export default function Scene() {
         far={10}
       />
 
-      <Center>
-        <Suspense
-          fallback={
-            <Html>
-              <TailSpin
-                visible={true}
-                height="80"
-                width="80"
-                color="#373e54"
-                ariaLabel="tail-spin-loading"
-                radius="1"
-                wrapperStyle={{}}
-                wrapperClass=""
-              />
-            </Html>
-          }
-        >
-          <Model />
-        </Suspense>
-      </Center>
+      <Suspense
+        fallback={
+          <Html>
+            <TailSpin
+              visible={true}
+              height="80"
+              width="80"
+              color="#373e54"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+          </Html>
+        }
+      >
+        <Model />
+      </Suspense>
     </>
   );
 }

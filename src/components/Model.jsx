@@ -1,10 +1,14 @@
 // imports
-import { useState, useEffect } from "react";
-import { useGLTF } from "@react-three/drei";
+import { useState, useEffect, useRef } from "react";
+import { useGLTF, Center, Resize } from "@react-three/drei";
 import { useSpring, animated } from "@react-spring/three";
+import { useAppContext } from "../context/store";
 
 export default function Model() {
+  const context = useAppContext();
+
   let model = useGLTF(`models/model.glb`);
+  const modelRef = useRef();
 
   const [active, setActive] = useState(false);
   const { scale } = useSpring({
@@ -18,7 +22,11 @@ export default function Model() {
 
   return (
     <animated.group scale={scale}>
-      <primitive object={model.scene} />
+      <Resize scale={2}>
+        <Center>
+          <primitive object={model.scene} ref={modelRef} />
+        </Center>
+      </Resize>
     </animated.group>
   );
 }
